@@ -1,12 +1,11 @@
-# 🌎 Atitus Maps
+#  Atitus Maps
 
 O **Atitus Maps** é uma aplicação web que permite visualizar, cadastrar e gerenciar pontos geográficos em um mapa interativo utilizando **Google Maps**, **React** e uma **API própria em Spring Boot**.
 
 O usuário pode se cadastrar, fazer login, adicionar pontos no mapa com uma **descrição personalizada**, e visualizar os pontos cadastrados por ele.
 
----
 
-## 🚀 Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 ### **Frontend**
 - React (Vite)
@@ -20,23 +19,21 @@ O usuário pode se cadastrar, fazer login, adicionar pontos no mapa com uma **de
 - PostgreSQL
 - JPA / Hibernate
 - Deploy no **Koyeb**
+  
 
----
+##  Funcionalidades
 
-## 🗺️ Funcionalidades
+-  **Autenticação** com cadastro e login
+-  **Adicionar pontos no mapa** ao clicar
+-  **Campo de descrição** para cada ponto
+-  Visualização dos pontos cadastrados
+-  Integração com Google Maps API
+-  Pontos vinculados ao usuário cadastrado
 
-- 🔐 **Autenticação** com cadastro e login
-- 📍 **Adicionar pontos no mapa** ao clicar
-- 📝 **Campo de descrição** para cada ponto
-- 👁️ Visualização dos pontos cadastrados
-- 🌐 Integração com Google Maps API
-- 🔒 Pontos vinculados ao usuário cadastrado
 
----
+##  Como rodar o projeto (Frontend)
 
-## 🛠️ Como rodar o projeto (Frontend)
-
-### 1️⃣ Clonar o repositório
+### Clonar o repositório
 ```bash
 git clone https://github.com/FelipeLuza/atitus-maps-frontend.git
-cd atitus-maps-frontend
+

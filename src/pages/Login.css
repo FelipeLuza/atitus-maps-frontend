@@ -14,7 +14,6 @@
   align-items: center;
 }
 
-/* BLOCO AMARELO */
 .login-top-block {
   width: 430px;
   height: 460px;
@@ -27,7 +26,6 @@
   overflow: visible;
 }
 
-/* LOGO */
 .login-logo-circle {
   width: 210px;
   height: 210px;
@@ -39,8 +37,6 @@
   box-shadow: 0px 15px 40px rgba(0,0,0,0.25);
 }
 
-
-/* CURVA PRETA GRUDADA NO BLOCO AMARELO */
 .login-curva {
   position: absolute;
   bottom: -10px;
@@ -51,7 +47,6 @@
   pointer-events: none; 
 }
 
-/* BLOCO PRETO */
 .login-area {
   width: 430px;
   background: #111;
@@ -60,12 +55,9 @@
   color: white;
   margin-top: -60px;
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  
-  
+  border-bottom-right-radius: 20px; 
 }
 
-/* TEXTOS */
 .login-title {
   font-size: 35px;
   font-weight: 700;
@@ -84,13 +76,11 @@
   display: block;
 }
 
-/* ERRO */
 .login-erro {
   color: #ff4d4d;
   margin: 5px 0;
 }
 
-/* CADASTRO */
 .login-cadastro {
   margin-top: 20px;
   text-align: center;
@@ -99,12 +89,11 @@
   font-weight: 600;
 }
 
-/* BOTÃO ACESSAR */
 .login-area form button {
   display: block;
   width: 75%;
   margin: 25px auto 0 auto;
-  background: #efae69 !important; /* amarelo igual ao topo */
+  background: #efae69 !important; 
   color: #fefefe !important;
   font-weight: 600;
   border: none;
@@ -113,24 +102,18 @@
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* BOTÃO ACESSAR — ANIMAÇÃO E CURSOR */
 .login-area form button {
   display: block;
   width: 75%;
   margin: 25px auto 0 auto;
   border-radius: 12px;
-
-  /* cursor */
   cursor: pointer;
-
-  /* animação suave */
   transition: all 0.25s ease-in-out;
 }
 
-/* HOVER — ESCURECIMENTO */
 .login-area form button:hover {
-  filter: brightness(0.85);   /* escurece suavemente */
-  transform: scale(0.98);     /* leve encolhida para sensação de clique */
+  filter: brightness(0.85);  
+  transform: scale(0.98);     
 }
 
 

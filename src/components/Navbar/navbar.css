@@ -1,14 +1,17 @@
 .navbar {
-    align-items: center;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    font-size: 16px;
-    justify-content: space-between;
-    padding: 20px 40px;
+  background-color: #0F0D0D;
+  color: #FFFFFF;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
 }
 
 .navbar .close {
-    background-color: transparent;
-    border: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
 }

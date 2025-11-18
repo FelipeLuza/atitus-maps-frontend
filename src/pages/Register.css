@@ -1,0 +1,176 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* CENTRALIZA HORIZONTAL E FICA NO TOPO */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: #d2d2d2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTAINER */
+.register-wrapper {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TOPO */
+.register-top-block {
+  width: 430px;
+  height: 415px; 
+  background: #f4bb75;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  padding-top: 10px; /* posição perfeita como no modelo */
+}
+
+/* LOGO */
+.register-logo-circle {
+  width: 200px;
+  height: 200px;
+  background: #eaa558;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  z-index: 3;
+}
+
+.register-curva {
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  width: 100%;
+  height: 120px;  /* menor = mais suave */
+  z-index: 5;
+  pointer-events: none;
+
+}
+
+.register-area {
+  position: relative;   /* importante */
+  top: -189px;          /* sobe o bloco preto na marra */
+  
+  width: 430px;
+  background: #111;
+  padding: 35px;
+  padding-top: 45px;
+  color: white;
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
+.register-title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 5; /* FICA POR CIMA DA CURVA */
+}
+
+
+/* SUBTÍTULO */
+.register-subtitle {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+/* LABELS */
+.register-label {
+  font-size: 15px;
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+
+/* INPUTS */
+.register-area input {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 12px;
+  background: #ffe5c2;
+  outline: none;
+  border: 2px solid #eaa558;
+}
+
+/* INPUT COM OLHO */
+.input-eye {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #ffe5c2;
+  border-radius: 12px;
+  border: 2px solid #eaa558;
+  padding-left: 10px;
+  margin-bottom: 2px;
+}
+
+.input-eye input {
+  flex: 1;
+  padding: 12px;
+  font-size: 15px;
+  background: transparent;
+  border: none;
+}
+
+.input-eye span {
+  font-size: 22px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+
+/* BOTÃO */
+.register-button {
+  display: block;
+  width: 65%;
+  margin: 20px auto 0 auto;
+  background: #eaa558 !important;
+  color: #fff !important;
+
+  border: none;
+  padding: 13px 0;
+  font-size: 18px;
+  font-weight: 700;
+
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.28);
+  transition: 0.2s;
+
+  cursor: pointer;
+}
+
+.register-button:hover {
+  filter: brightness(0.92);
+  transform: scale(0.98);
+}
+
+.register-login-link {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  
+  color: #eaa558;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+
+

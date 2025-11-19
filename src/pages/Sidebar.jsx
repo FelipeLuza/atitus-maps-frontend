@@ -1,4 +1,6 @@
-const Sidebar = ({ points, onAddPoint }) => {
+import React from "react";
+
+const Sidebar = ({ points, onAddPoint, onDeletePoint }) => {
   return (
     <div
       style={{
@@ -29,8 +31,30 @@ const Sidebar = ({ points, onAddPoint }) => {
         )}
 
         {points.map((p) => (
-          <li key={p.id} style={{ marginBottom: "0.5rem" }}>
+          <li
+            key={p.id}
+            style={{
+              marginBottom: "0.8rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}
+          >
             <strong>{p.title}</strong>
+
+            <button
+              onClick={() => onDeletePoint(p.id)}
+              style={{
+                background: "red",
+                color: "white",
+                border: "none",
+                padding: "3px 8px",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              X
+            </button>
           </li>
         ))}
       </ul>

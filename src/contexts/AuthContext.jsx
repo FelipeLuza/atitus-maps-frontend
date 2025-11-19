@@ -8,7 +8,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => {
-  
+   
     return sessionStorage.getItem("token") || null;
   });
 
@@ -20,8 +20,12 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
-  function login(newToken) {
-    setToken(newToken);
+  function login(data) {
+    if (typeof data === "object" && data.token) {
+      setToken(data.token); 
+    } else {
+      setToken(data); 
+    }
   }
 
   function logout() {

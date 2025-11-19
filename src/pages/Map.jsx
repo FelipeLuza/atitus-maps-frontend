@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../components";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { getPoints, postPoint } from '../services/mapService';
+import { getPoints, postPoint, deletePoint } from "../services/restauranteService";
 import { useAuth } from "../contexts/AuthContext";
-import Sidebar  from './Sidebar';
+import Sidebar from "./Sidebar";
 
 const containerStyle = {
   width: "100%",
@@ -26,20 +26,8 @@ export const Map = () => {
   useEffect(() => {
     async function fetchMarkers() {
       try {
-
         const data = await getPoints(token);
-
-        const formatted = data.map((p) => ({
-          id: p.id,
-          title: p.description,
-          position: {
-            lat: p.latitude,
-            lng: p.longitude
-          }
-        }));
-
-        setMarkers(formatted);
-
+        setMarkers(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -51,13 +39,26 @@ export const Map = () => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
 
-    const descricao = prompt("Digite uma descrição para o ponto:");
-    if (!descricao) return;
+    let descricao = prompt("Digite uma descrição para o ponto:");
+
+    if (!descricao) {
+      alert("A descrição é obrigatória.");
+      return;
+    }
+
+    descricao = descricao.trim();
+
+    const descRegex = /[A-Za-zÀ-ÿ]/;
+
+    if (descricao.length < 3 || !descRegex.test(descricao)) {
+      alert("Descrição inválida. Digite pelo menos 3 caracteres e use letras.");
+      return;
+    }
 
     const newPoint = {
+      description: descricao,
       latitude: lat,
       longitude: lng,
-      description: descricao,
     };
 
     try {
@@ -65,23 +66,31 @@ export const Map = () => {
 
       const savedMarker = {
         id: savedPoint.id,
-        title: savedPoint.description,
-        position: {
-          lat: savedPoint.latitude,
-          lng: savedPoint.longitude
-        }
+        title: savedPoint.title,
+        position: savedPoint.position,
       };
 
       setMarkers((prev) => [...prev, savedMarker]);
-
     } catch (error) {
       alert("Erro ao salvar ponto: " + error.message);
+    }
+  };
+
+  const handleDeletePoint = async (id) => {
+    if (!confirm("Tem certeza que deseja excluir este ponto?")) return;
+
+    try {
+      await deletePoint(token, id);
+      setMarkers((prev) => prev.filter((m) => m.id !== id));
+    } catch (error) {
+      alert("Erro ao deletar ponto: " + error.message);
     }
   };
 
   return (
     <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
       <Navbar />
+
       {isLoaded ? (
         <>
           <GoogleMap
@@ -95,16 +104,14 @@ export const Map = () => {
                 key={marker.id}
                 position={marker.position}
                 title={marker.title}
-                onClick={() => alert(marker.title)}
               />
             ))}
           </GoogleMap>
 
           <Sidebar
             points={markers}
-            onAddPoint={() =>
-              alert("Clique no mapa para adicionar um ponto")
-            }
+            onAddPoint={() => alert("Clique no mapa para adicionar um ponto")}
+            onDeletePoint={handleDeletePoint}
           />
         </>
       ) : (

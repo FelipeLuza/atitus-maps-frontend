@@ -15,7 +15,7 @@ export async function signIn(email, password) {
         throw new Error('Usuário ou senha incorretos.');
       }
     }
-    throw new Error('Erro ao autenticar.');
+    throw new Error(error.response?.data?.message || 'Erro ao autenticar.');
   }
 }
 
@@ -26,12 +26,12 @@ export async function signUp(name, email, password) {
   } catch (error) {
     if (error.response) {
       if (error.response.status === 400) {
-        throw new Error('Requisição inválida.');
+        throw new Error(error.response.data.message || 'Requisição inválida.');
       }
       if (error.response.status === 409) {
         throw new Error('Usuário já cadastrado.');
       }
     }
-    throw new Error('Erro ao cadastrar usuário.');
+    throw new Error(error.response?.data?.message || 'Erro ao cadastrar usuário.');
   }
 }

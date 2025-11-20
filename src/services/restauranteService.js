@@ -26,7 +26,7 @@ export async function postPoint(token, pointData) {
     const response = await axios.post(BASE_URL, pointData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-
+     
     const p = response.data;
 
     return {
@@ -74,3 +74,4 @@ export async function deletePoint(token, id) {
     throw new Error(error.response?.data?.message || "Erro ao remover ponto");
   }
 }
+ 

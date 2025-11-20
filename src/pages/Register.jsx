@@ -73,7 +73,6 @@ export function Register() {
   return (
     <div className="register-wrapper">
 
-      {/* TOPO */}
       <div className="register-top-block">
         <div className="register-logo-circle">
           <Logo white />
@@ -87,14 +86,12 @@ export function Register() {
         </svg>
       </div>
 
-      {/* FORM */}
       <div className="register-area">
         <h1 className="register-title">Cadastrar-se</h1>
         <p className="register-subtitle">Insira os dados</p>
 
         <form onSubmit={handleSubmit}>
 
-          {/* EMAIL */}
           <label className="register-label">E-mail:</label>
           <Input
             placeholder="Digite seu email..."
@@ -108,7 +105,6 @@ export function Register() {
           />
           {erroEmail && <p className="register-erro">{erroEmail}</p>}
 
-          {/* NOME */}
           <label className="register-label">Nome:</label>
           <Input
             placeholder="Digite seu nome..."
@@ -123,7 +119,6 @@ export function Register() {
           />
           {erroNome && <p className="register-erro">{erroNome}</p>}
 
-          {/* SENHA */}
           <label className="register-label">Senha:</label>
           <Input
             placeholder="Digite sua senha..."
@@ -137,7 +132,6 @@ export function Register() {
           />
           {erroSenha && <p className="register-erro">{erroSenha}</p>}
 
-          {/* CONFIRMAR SENHA */}
           <label className="register-label">Confirmar Senha:</label>
           <Input
             placeholder="Confirme sua senha..."

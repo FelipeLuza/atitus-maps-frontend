@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../components";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { getPoints, postPoint, deletePoint } from "../services/restauranteService";
+import {
+  getPoints,
+  postPoint,
+  deletePoint,
+  updatePoint
+} from "../services/restauranteService";
 import { useAuth } from "../contexts/AuthContext";
 import Sidebar from "./Sidebar";
 
@@ -18,6 +23,7 @@ const center = {
 export const Map = () => {
   const { token } = useAuth();
   const [markers, setMarkers] = useState([]);
+  const [selectedPoint, setSelectedPoint] = useState(null);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -87,6 +93,33 @@ export const Map = () => {
     }
   };
 
+  const handleUpdatePoint = async (point) => {
+    const novaDescricao = prompt("Nova descrição:", point.title);
+
+    if (!novaDescricao || novaDescricao.trim().length < 3) {
+      alert("Descrição inválida");
+      return;
+    }
+
+    try {
+      const updated = await updatePoint(token, point.id, {
+        description: novaDescricao.trim(),
+        latitude: point.position.lat,
+        longitude: point.position.lng,
+      });
+
+      setMarkers((prev) =>
+        prev.map((m) =>
+          m.id === point.id ? { ...m, title: updated.title } : m
+        )
+      );
+
+      setSelectedPoint(null);
+    } catch (error) {
+      alert("Erro ao atualizar ponto: " + error.message);
+    }
+  };
+
   return (
     <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
       <Navbar />
@@ -104,9 +137,50 @@ export const Map = () => {
                 key={marker.id}
                 position={marker.position}
                 title={marker.title}
+                onClick={() => setSelectedPoint(marker)}
               />
             ))}
           </GoogleMap>
+
+          {selectedPoint && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "30px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "white",
+                padding: "12px 18px",
+                borderRadius: "8px",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                zIndex: 9999,
+              }}
+            >
+              <strong>{selectedPoint.title}</strong>
+
+              <button
+                style={{
+                  marginLeft: "15px",
+                  background: "#007bff",
+                  color: "white",
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleUpdatePoint(selectedPoint)}
+              >
+                Atualizar
+              </button>
+
+              <button
+                onClick={() => setSelectedPoint(null)}
+                style={{ marginLeft: "10px" }}
+              >
+                Fechar
+              </button>
+            </div>
+          )}
 
           <Sidebar
             points={markers}
